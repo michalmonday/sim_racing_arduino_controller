@@ -12,6 +12,8 @@
 
 #include <Joystick.h>
 
+
+
 #include "Joystick.h"
 
 #define PIN_SHIFTER_X A6
@@ -164,56 +166,50 @@ void loop() {
     
     int rawClutchPosition = constrain( analogRead(PIN_PEDALS_CLUTCH), CLUTCH_MIN, CLUTCH_MAX); 
     
-    Serial.print("Clutch - ");
-    Serial.print(rawClutchPosition, DEC);
-    //int mappedClutchPosition = getMappedPedalPosition(CLUTCH, rawClutchPosition);
+//    Serial.print("Clutch - ");
+//    Serial.print(rawClutchPosition, DEC);
     int mappedClutchPosition = map(rawClutchPosition, CLUTCH_MIN, CLUTCH_MAX, RANGE_LIMIT, 0);
     pedals.setAccelerator(mappedClutchPosition);
-    //gamepad.setRzAxis(mappedClutchPosition);
-    Serial.print(" ("+String(mappedClutchPosition)+") ");
+//    Serial.print(" ("+String(mappedClutchPosition)+") ");
 
 
     int rawAcceleratorPosition = constrain( analogRead(PIN_PEDALS_THROTTLE), THROTTLE_MIN, THROTTLE_MAX );
-    Serial.print(" | Accelerator - ");
-    Serial.print(rawAcceleratorPosition, DEC);
-    //int mappedAcceleratorPostion = getMappedPedalPosition(ACCELERATOR, rawAcceleratorPosition);
+//    Serial.print(" | Accelerator - ");
+//    Serial.print(rawAcceleratorPosition, DEC);
     int mappedAcceleratorPostion = map(rawAcceleratorPosition, THROTTLE_MIN, THROTTLE_MAX, RANGE_LIMIT, 0);
     pedals.setThrottle(mappedAcceleratorPostion);
-    //gamepad.setRxAxis(mappedAcceleratorPostion);
-    Serial.print(" ("+String(mappedAcceleratorPostion)+") ");
+//    Serial.print(" ("+String(mappedAcceleratorPostion)+") ");
 
     int rawBrakePosition = constrain( analogRead(PIN_PEDALS_BRAKE), BRAKE_MIN, BRAKE_MAX );
-    Serial.print(" | Brake - ");
-    Serial.print(rawBrakePosition, DEC);
-    //int mappedBrakePosition = getMappedPedalPosition(BRAKE, rawBrakePosition);
+//    Serial.print(" | Brake - ");
+//    Serial.print(rawBrakePosition, DEC);
     int mappedBrakePosition = map(rawBrakePosition, BRAKE_MIN, BRAKE_MAX, RANGE_LIMIT, 0);
     pedals.setBrake(mappedBrakePosition);
-    //gamepad.setRyAxis(mappedBrakePosition);
-    Serial.print(" ("+String(mappedBrakePosition)+") ");
+//    Serial.print(" ("+String(mappedBrakePosition)+") ");
 
     int gear = shifter_pos_to_btn_gear(analogRead(PIN_SHIFTER_X), analogRead(PIN_SHIFTER_Y));
     if (gear == BTN_GEAR_6 && digitalRead(PIN_SHIFTER_REVERSE)) {
       gear = BTN_GEAR_REVERSE;
     }
 
-    Serial.print(" | Shifter - ");
-    Serial.print(analogRead(PIN_SHIFTER_X), DEC);
-    Serial.print(" x ");
-    Serial.print(analogRead(PIN_SHIFTER_Y), DEC);
+//    Serial.print(" | Shifter - ");
+//    Serial.print(analogRead(PIN_SHIFTER_X), DEC);
+//    Serial.print(" x ");
+//    Serial.print(analogRead(PIN_SHIFTER_Y), DEC);
     
 
-    if (gear == BTN_GEAR_REVERSE) {
-      Serial.print("(gear reverse)");
-    } else {
-      Serial.print("(gear " + String(gear) + ")");
-    }
+//    if (gear == BTN_GEAR_REVERSE) {
+//      Serial.print("(gear reverse)");
+//    } else {
+//      Serial.print("(gear " + String(gear) + ")");
+//    }
 
     int rawHandbrake = constrain(analogRead(PIN_HANDBRAKE), HANDBRAKE_MIN, HANDBRAKE_MAX);
     int mappedHandbrakePosition = map(rawHandbrake, HANDBRAKE_MAX, HANDBRAKE_MIN, RANGE_LIMIT, 0);
     pedals.setSteering(mappedHandbrakePosition);
-    Serial.print(" | Handbrake - " + String(rawHandbrake) + " (" + String(mappedHandbrakePosition) + ")");
-    
-    Serial.println(" ");
+//    Serial.print(" | Handbrake - " + String(rawHandbrake) + " (" + String(mappedHandbrakePosition) + ")");
+//    
+//    Serial.println(" ");
 
 
     if (last_gear != gear) {
@@ -223,6 +219,5 @@ void loop() {
       last_gear = gear;
     }
     
-    delay(20);
-  
+    //delay(20);
 }

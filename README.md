@@ -13,6 +13,10 @@ You can see that on images, RS232 connectors have more wires than in the schemat
 The latency of devices is around 35-40ms as measured during this test:  
 https://www.youtube.com/watch?v=JN2piJnbTjY
 
+# Dependencies
+The sketch is using the ArduinoJoystickLibrary (tested with version 2.1.1):  
+https://github.com/MHeironimus/ArduinoJoystickLibrary
+
 <img alt="ERROR: IMAGE NOT SHOWN" src="./images/all.jpg" width=700 />
 <img alt="ERROR: IMAGE NOT SHOWN" src="./images/schematic.png" />
 
